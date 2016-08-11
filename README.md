@@ -1,4 +1,6 @@
 # kurl: curl for Kubernetes
+[![Build Status](https://travis-ci.org/alexbrand/kurl.svg?branch=master)](https://travis-ci.org/alexbrand/kurl)
+[![Go Report Card](https://goreportcard.com/badge/github.com/alexbrand/kurl)](https://goreportcard.com/report/github.com/alexbrand/kurl)
 
 ## Usage
 kurl the first pod that matches the argument:
