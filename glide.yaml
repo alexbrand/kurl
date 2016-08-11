@@ -1,0 +1,8 @@
+package: github.com/alexbrand/kurl
+import:
+- package: k8s.io/kubernetes
+  version: ~1.4.0-alpha.2
+  subpackages:
+  - pkg/api
+  - pkg/client/restclient
+  - pkg/client/unversioned
