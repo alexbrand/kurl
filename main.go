@@ -103,7 +103,7 @@ func main() {
 }
 
 func usage() {
-	fmt.Println("kurl: curl for Kubernetes\n")
+	fmt.Print("kurl: curl for Kubernetes\n\n")
 	fmt.Println("Usage: kurl POD_NAME")
 	pflag.PrintDefaults()
 	os.Exit(1)
