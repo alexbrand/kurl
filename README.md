@@ -2,13 +2,31 @@
 [![Build Status](https://travis-ci.org/alexbrand/kurl.svg?branch=master)](https://travis-ci.org/alexbrand/kurl)
 [![Go Report Card](https://goreportcard.com/badge/github.com/alexbrand/kurl)](https://goreportcard.com/report/github.com/alexbrand/kurl)
 
+kurl makes it easy to quickly issue a GET request to a pod running on your Kubernetes cluster. 
+It also supports a more advanced "proxy mode", which allows you to talk to pods using the 
+tool of your choice.
+
 ## Usage
-kurl the first pod that matches the argument:
+```
+[root@localhost ~]# ./kurl -h
+kurl: curl for Kubernetes
+
+Usage: kurl POD_NAME
+      --proxy[=false]: start in proxy mode
+      --proxy-port="9090": set the port when running in proxy mode
+  -s, --server="http://127.0.0.1:8080": address of the K8s API Server
+```
+
+## Example
+Assuming you have an nginx pod running on your Kubernetes cluster:
 ```
 [root@localhost ~]# kubectl get pods
 NAME                     READY     STATUS    RESTARTS   AGE
 nginx-3137573019-jqvxa   1/1       Running   0          42m
+```
 
+### Basic (GET request)
+```
 [root@localhost ~]# kurl nginx
 <!DOCTYPE html>
 <html>
@@ -35,4 +53,22 @@ Commercial support is available at
 <p><em>Thank you for using nginx.</em></p>
 </body>
 </html>
+``` 
+
+### Advanced (Proxy mode)
+```
+[root@localhost ~] kurl --proxy &
+[1] 24271
+Starting proxy on port 9090
+
+[root@localhost ~] export http_proxy=localhost:9090
+[root@localhost ~]# curl --head nginx
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Content-Length: 612
+Content-Type: text/html
+Date: Fri, 12 Aug 2016 02:37:13 GMT
+Etag: "574da256-264"
+Last-Modified: Tue, 31 May 2016 14:40:22 GMT
+Server: nginx/1.11.1
 ```
