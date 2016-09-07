@@ -72,3 +72,11 @@ Etag: "574da256-264"
 Last-Modified: Tue, 31 May 2016 14:40:22 GMT
 Server: nginx/1.11.1
 ```
+
+### Build binary (using docker)
+
+``` 
+docker build -t kurl-release .
+docker run kurl-release cat kurl > kurl #(unix binary)
+docker run kurl-release cat kurl.exe > kurl.exe #(windows binary)
+```
